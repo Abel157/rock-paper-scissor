@@ -1,0 +1,42 @@
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background-color:rgb(228, 231, 231);
+    justify-content: space-around;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.header{
+    padding: 16px;
+    display: flex;
+}
+h1{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.mid{
+    display: flex;
+    justify-content: space-around;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+#rock,#paper,#sci{
+    width: 120px;
+    height:50px;
+    font-size: medium;
+    font-weight: bolder;
+    background-color: floralwhite;
+    border-radius: 30px;
+    border-color: brown;
+}
+.end{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}

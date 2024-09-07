@@ -11,7 +11,7 @@ function getComputerChoice (){
     }
 };
 //function to get the human choice 
-function getHumanChoice (){
+/*function getHumanChoice (){
     let humanChoice=(prompt("Enter 'rock', 'paper' or 'scissors' ")).toLowerCase() || "Please enter one of the options";
     const choices=["rock","paper", "scissors"];
     humanChoice=(choices.includes(humanChoice)? humanChoice : "Please enter only one of the three options");
@@ -20,47 +20,51 @@ function getHumanChoice (){
         return;
     }
     return(humanChoice);
-};
+};*/
 let humanScore=0;//gloabal variable to track human's win count
 let computerScore=0;// ""   ""           ""    computers's ""
-playGame();// call the playgame function which calls the play round function 5 times.
+let round=0;
+let game=0;
+// call the playgame function which calls the play round function 5 times.
 //function that computes the play of a single round.
 function playRound (humanChoice,computerChoice){ 
+    round++
     switch(`${humanChoice} ${computerChoice}`){ 
         case 'rock paper':
-            alert(`you lose ☹ ${computerChoice} beats ${humanChoice}`);
+            result.textContent=(` Round : ${round} => you lose 🤣🙃 ${computerChoice} beats ${humanChoice}`);
             computerScore++;
             break;
         case 'rock scissors':
-            alert(`you win 😎 ${humanChoice} beats ${computerChoice}`);
+            result.textContent=(` Round : ${round} => you win 😎 ${humanChoice} beats ${computerChoice}`);
             humanScore++;
             break;
         case 'paper rock':
-            alert(`you win 😎 ${humanChoice} beats ${computerChoice}`);
+            result.textContent=(` Round : ${round} => you win 😎 ${humanChoice} beats ${computerChoice}`);
             humanScore++;
             break;
         case 'paper scissors':
-            alert(`you lose ☹ ${computerChoice} beats ${humanChoice}`);
+            result.textContent=(` Round : ${round} => you lose 🤣🙃 ${computerChoice} beats ${humanChoice}`);
             computerScore++;
             break;
         case 'scissors paper':
-            alert(`you win 😎 ${humanChoice} beats ${computerChoice}`);
+            result.textContent=(` Round : ${round} => you win 😎 ${humanChoice} beats ${computerChoice}`);
             humanScore++;
             break;
         case 'scissors rock':
-            alert(`you lose ☹ ${computerChoice} beats ${humanChoice}`);
+            result.textContent=(` Round : ${round} => you lose 🤣🙃 ${computerChoice} beats ${humanChoice}`);
             computerScore++;
             break;
         case 'scissors scissors':
         case 'rock rock':
         case 'paper paper':
-            alert(' It was a Draw!🤝');
+            result.textContent=(` Round : ${round} => It was a Draw!🤝`);
             break;
         default:
-            alert('please correct your inputs based on the choices and replay 👀 ');
+            result.textContent=('please correct your inputs based on the choices and replay 👀 ');
     };
+    finalResult();
 };
-function playGame(){
+/*function playGame(){
     let winner;// final winner announcing statement
     for (let count=0; count<5;count++){// loop 5 times to play 5 rounds
         let humanselect= getHumanChoice();// reinvoke the getHumanCh.. function 5 times to get new guess
@@ -77,9 +81,45 @@ function playGame(){
     else {
         winner=`You Draw ${humanScore} to ${computerScore}`;
     }
-    alert(winner);
+    result.textContent=(winner);
     return winner;
-};
+};*/
+function finalResult(){
+    if ((humanScore>=5)||computerScore>=5){
+        game++;
+        const resultTxt=document.createElement("p")
+        resultTxt.textContent=(humanScore>=5)? `Game ${game} : You win ${humanScore} to ${computerScore}`:`Game ${game} : You lose ${computerScore} to ${humanScore}`;
+        resultTxt.setAttribute("style","text-align: center; font-size:32px;")
+        statement.appendChild(resultTxt);
+        humanScore=0;
+        computerScore=0;
+        round=0;
+        return;
+    }
+    else{
+        return;
+    }
+}
+const rock=document.querySelector("#rock");
+const paper=document.querySelector("#paper");
+const sci=document.querySelector("#sci");
+const statement=document.querySelector(".end");
+const result=document.querySelector(".result");
+rock.addEventListener("click",()=>{
+    let humanChoice="rock";
+    playRound(humanChoice,getComputerChoice());
+});
+paper.addEventListener("click",()=>{
+    let humanChoice="paper";
+    playRound(humanChoice,getComputerChoice());
+});
+sci.addEventListener("click",()=>{
+    let humanChoice="scissors";
+    playRound(humanChoice,getComputerChoice());
+});
+result.setAttribute("style","text-align: center; font-size:24px;");
+
+
 
 
 
